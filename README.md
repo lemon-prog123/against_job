@@ -28,3 +28,13 @@
 例如 `python run.py --quant --activate --savepath quant_model --imgpath quant ` 
 
 表示将要以量化和动态阈值激活模式开启训练。
+
+超参数设置
+`--迭代次数` 15
+`--PGD`  参数和作业参考一致
+`--正交惩罚项`  1e-4
+`谱范惩罚项` 1e-2
+`--动态阈值` 4bit
+`--squeeze参数` 和原论文一致，具体参考代码
+`--学习率` 1e-4
+`--优化器` Adam
