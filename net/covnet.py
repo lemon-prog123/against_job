@@ -86,9 +86,9 @@ class ConvNet(nn.Module):
                 elif type(layer) == Conv or type(layer)==Conv_re or type(layer)==nn.Conv2d:
                     w = layer._parameters[ 'weight' ]
                     N, C, H, W = w.shape
-                    w = w.view(N * C, H, W)
-                    m = torch.bmm(w, w.permute(0, 2, 1))
-                    loss=loss+ torch.norm(m - torch.eye(H).to(self.device))
+                    w = w.view(N,C*H*W)
+                    m = w@w.T
+                    loss=loss+ torch.norm(m - torch.eye(N).to(self.device))
         else:
             for layer in self.modules():
                 if type(layer) == Linear or type(layer)==Linear_re:
